@@ -1,29 +1,83 @@
 <template>
   <div class="pesquisa">
-    <h1>Hello</h1>
+    <form>
+        <h2> Como deseja fazer sua pesquisa ? </h2>
+        
+        <div class="form-group">
+          <label for="partido">Partido</label>
+          <select id = "partido">
+            <option v-for="partido in partidos" :key="partido" >{{partido}}</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="estado">Estado</label>
+          <select id = "estado">
+            <option v-for="uf in ufs" :key="uf">{{uf}}</option>
+          </select>
+        </div>
+        <button>Pesquisar</button>
+    </form>
   </div>
 </template>
 
 <script>
+import api from '../service/api'
+
 export default {
+  
+  async mounted() {
+    const parametros = await api.parametrosIniciais()
+    this.partidos = parametros.partidos
+    this.ufs = parametros.ufs
+  },
+
+
   name: 'Pesquisa',
+  data() {
+    return {
+      partidos: [],
+      ufs: []
+    }
+  },
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+
+.pesquisa{
+  padding: 10px 20px;
+  color: aliceblue;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  height: 250px;
+  background-color: black;
 }
-ul {
-  list-style-type: none;
-  padding: 0;
+
+
+.form-group{
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-li {
-  display: inline-block;
-  margin: 0 10px;
+
+.form-group label{
+  margin-right: 10px;
+  font-size: 22px;
 }
-a {
-  color: #42b983;
+
+.form-group select{
+  width: 120px;
+}
+
+form button{
+  margin-top: 30px;
+  width: 150px;
+  text-align: center;
+  height: 40px;
+  font-size: 20px;
 }
 </style>
