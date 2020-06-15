@@ -4,18 +4,42 @@
       <h1>VotoSensato</h1>
     </div>
 
-    <pesquisa/>
+    <div v-if="!pesquisar">
+        <PesquisaParametros @dadosSelecionados="recebendoParametros"/>
+    </div>
+    <div v-else>
+      <Resultado/>
+    </div>
   </div>
+
 </template>
 
 <script>
-import pesquisa from './components/Pesquisa.vue'
+
+import PesquisaParametros from './components/Pesquisa.vue';
+import Resultado from './components/Resultado';
 
 export default {
   name: 'App',
   components: {
-    pesquisa
-  }
+    PesquisaParametros,
+    Resultado
+  },
+  data() {
+    return {
+      pesquisar: true,
+      parametrosPesquisa: {}
+    }
+  },
+  methods: {
+    // Recebendo parâmetros para realizar buscar de deputados na A
+    recebendoParametros: function(parametros){
+      this.parametrosPesquisa.partido = parametros.partido;
+      this.parametrosPesquisa.uf = parametros.uf;
+      this.pesquisar = true;
+    },
+  },
+
 }
 </script>
 

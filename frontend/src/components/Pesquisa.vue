@@ -1,23 +1,22 @@
 <template>
   <div class="pesquisa">
-    <form>
         <h2> Como deseja fazer sua pesquisa ? </h2>
         
         <div class="form-group">
           <label for="partido">Partido</label>
-          <select id = "partido">
-            <option v-for="partido in partidos" :key="partido" >{{partido}}</option>
+          <select id = "partido" v-model="partidoSelecionado">
+            <option v-for="partido in partidos" :key="partido" :value="partido">{{ partido }}</option>
           </select>
         </div>
 
         <div class="form-group">
           <label for="estado">Estado</label>
-          <select id = "estado">
-            <option v-for="uf in ufs" :key="uf">{{uf}}</option>
+          <select id = "estado" v-model="ufSelecionado">
+            <option v-for="uf in ufs" :key="uf" :value="uf">{{ uf }}</option>
           </select>
         </div>
-        <button>Pesquisar</button>
-    </form>
+        
+        <button @click="dadosSelecionados">Pesquisar</button>
   </div>
 </template>
 
@@ -31,13 +30,24 @@ export default {
     this.partidos = parametros.partidos
     this.ufs = parametros.ufs
   },
-
-
-  name: 'Pesquisa',
+  name: 'PesquisaParametros',
   data() {
     return {
       partidos: [],
-      ufs: []
+      ufs: [],
+      partidoSelecionado: null,
+      ufSelecionado: null,
+    }
+  },
+
+  methods: {
+    dadosSelecionados: function (){
+        this.$emit("dadosSelecionados", 
+          {
+            partido: this.partidoSelecionado,
+            uf: this.ufSelecionado
+          }
+        );
     }
   },
 }
@@ -54,6 +64,7 @@ export default {
   width: 400px;
   height: 250px;
   background-color: black;
+  align-items: center;
 }
 
 
@@ -73,7 +84,7 @@ export default {
   width: 120px;
 }
 
-form button{
+button{
   margin-top: 30px;
   width: 150px;
   text-align: center;
