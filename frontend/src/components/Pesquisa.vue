@@ -57,13 +57,14 @@ export default {
 <style scoped>
 
 .pesquisa{
+  border-radius: 10px;
   padding: 10px 20px;
   color: aliceblue;
   display: flex;
   flex-direction: column;
   width: 400px;
   height: 250px;
-  background-color: black;
+  background-color: #537EFF;
   align-items: center;
 }
 
@@ -85,6 +86,10 @@ export default {
 }
 
 button{
+  border-radius: 10px;
+  border: white solid 2px;
+  color: white;
+  background-color: #0537CC;
   margin-top: 30px;
   width: 150px;
   text-align: center;
