@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id= "titulo">
-      <h1>VotoSensato</h1>
+      <h1>Voto<span>Sensato</span></h1>
     </div>
 
     <div v-if="!pesquisar">
@@ -27,7 +27,7 @@ export default {
   },
   data() {
     return {
-      pesquisar: true,
+      pesquisar: false,
       parametrosPesquisa: {}
     }
   },
@@ -52,7 +52,18 @@ export default {
   flex-direction: column;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  margin-top: 30px;
   align-items: center;
+}
+
+#titulo{
+  font-size: 25px;
+  color: white;
+  font-family: 'Racing Sans One', cursive;
+}
+
+#titulo span{
+  font-size: 55px;
+  text-shadow: #537EFF 2px 3px 2px;
 }
 </style>
