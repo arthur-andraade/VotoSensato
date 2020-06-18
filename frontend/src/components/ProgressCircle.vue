@@ -7,7 +7,7 @@
         :startColor="primaryColor"
         :stopColor="stopColor"
         >
-            <p>{{ msg }}</p>
+            <p id="msg">{{ msg }}</p>
         </radial-progress-bar>
     </div>
 </template>
@@ -15,10 +15,7 @@
 <script>
 import RadialProgressBar from 'vue-radial-progress'
 export default {
-    
-    mounted() {
-        this.iniciandoProgress();
-    },
+    name: "ProgressCircle",
     props: {
         carregando: {
             type: Boolean,
@@ -29,7 +26,6 @@ export default {
             required: true
         }
     },
-    name: "ProgressCircle",
     components: {
         RadialProgressBar
     },
@@ -43,7 +39,9 @@ export default {
             progress: null
         }
     },
-
+    mounted() {
+        this.iniciandoProgress();
+    },
     methods: {
         iniciandoProgress: function() {
             if(this.carregar){
@@ -62,4 +60,8 @@ export default {
 
 <style scoped>
 
+#msg{
+    color: white;
+    font-size: 18px;
+}
 </style>
