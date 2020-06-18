@@ -23,10 +23,12 @@ export default {
 <style scoped>
 
 .caixa{
+    border: white solid 3px;
     margin: 0px 15px;
     width: 400px;
     height: 300px;
     background-color: #537EFF;
+    box-shadow: #5294F7 2px 4px 2px;
     border-radius: 10px;
 }
 .caixa:nth-child(n+3){

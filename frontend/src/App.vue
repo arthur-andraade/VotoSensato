@@ -5,7 +5,7 @@
     </div>
 
     <div v-if="!pesquisar">
-        <PesquisaParametros @dadosSelecionados="recebendoParametros"/>
+      <PesquisaParametros @dadosSelecionados="recebendoParametros"/>
     </div>
     <div v-else>
       <Resultado/>
@@ -15,7 +15,6 @@
 </template>
 
 <script>
-
 import PesquisaParametros from './components/Pesquisa.vue';
 import Resultado from './components/Resultado';
 
@@ -23,7 +22,7 @@ export default {
   name: 'App',
   components: {
     PesquisaParametros,
-    Resultado
+    Resultado,
   },
   data() {
     return {

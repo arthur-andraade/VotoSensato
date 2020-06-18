@@ -1,45 +1,70 @@
 <template>
-  <div class="pesquisa">
-        <h2> Como deseja fazer sua pesquisa ? </h2>
-        
+  <div class="pesquisa" :class="{loading: carregando}">
+    
+    <div v-if="!carregando">
+      <h2> Como deseja fazer sua pesquisa ? </h2>
         <div class="form-group">
           <label for="partido">Partido</label>
           <select id = "partido" v-model="partidoSelecionado">
-            <option v-for="partido in partidos" :key="partido" :value="partido">{{ partido }}</option>
+            <option 
+              v-for="partido in partidos" 
+              :key="partido" 
+              :value="partido"
+            >
+              {{ partido }}            
+            </option>
           </select>
         </div>
-
         <div class="form-group">
           <label for="estado">Estado</label>
           <select id = "estado" v-model="ufSelecionado">
-            <option v-for="uf in ufs" :key="uf" :value="uf">{{ uf }}</option>
+            <option 
+              v-for="uf in ufs" 
+              :key="uf" 
+              :value="uf"
+            >
+              {{ uf }}
+            </option>
           </select>
-        </div>
-        
+        </div>        
         <button @click="dadosSelecionados">Pesquisar</button>
+    </div>
+    
+    <div v-else class="loading">
+      <ProgressCircle 
+        :carregando="carregando"
+        msg="Carregando dados"
+      />
+    </div>
+
   </div>
 </template>
 
 <script>
+import ProgressCircle from './ProgressCircle';
 import api from '../service/api'
 
 export default {
-  
   async mounted() {
-    const parametros = await api.parametrosIniciais()
-    this.partidos = parametros.partidos
-    this.ufs = parametros.ufs
+    const parametros = await api.parametrosIniciais();
+    this.partidos = parametros.partidos;
+    this.ufs = parametros.ufs;
+    this.progressBar = null;
+    this.carregando = false;
   },
   name: 'PesquisaParametros',
+  components: {
+    ProgressCircle
+  },
   data() {
     return {
       partidos: [],
       ufs: [],
       partidoSelecionado: null,
       ufSelecionado: null,
+      carregando: true,
     }
   },
-
   methods: {
     dadosSelecionados: function (){
         this.$emit("dadosSelecionados", 
@@ -49,7 +74,7 @@ export default {
           }
         );
     }
-  },
+  }
 }
 </script>
 
@@ -95,5 +120,9 @@ button{
   text-align: center;
   height: 40px;
   font-size: 20px;
+}
+
+.loading{
+  background-color: transparent;
 }
 </style>
