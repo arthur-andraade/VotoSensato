@@ -32,7 +32,7 @@ class ColetadorPartidos():
         dadosPartidoFormatado['situacao'] = dadosPartido['status']['situacao']
         
         # Pegando dados sobre MEMBROS do PARTIDO
-        url += '/membros'
+        url += '/membros?itens=100'
         dadosMembrosPartido = requests.get(url).json()['dados'] 
         dadosMembrosPartidoFormatado = []
         for membro in dadosMembrosPartido:
