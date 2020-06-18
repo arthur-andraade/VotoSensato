@@ -2,21 +2,21 @@
         <div class="caixa"> 
             
             <div class="principal-info">
-                <img src="http://www.camara.gov.br/internet/deputado/bandep/73701.jpg">
+                <img :src="image">
                 <div>
-                    <h3>Nome:</h3>
-                    <h3>Nome parlamentar:</h3>
-                    <h3>Condição:</h3>
+                    <h3>Nome: {{ nome }}</h3>
+                    <h3>UF:{{ uf }}</h3>
                 </div>
             </div>
-
+            <h3>Email: {{ email }}</h3>
             <button> Saber mais</button>
         </div>
 </template>
 
 <script>
 export default {
-    name: "ResultadoCaixa"
+    name: "ResultadoCaixa",
+    props: ['nome','image','uf','email']
 }
 </script>
 
@@ -42,6 +42,7 @@ export default {
 }
 .principal-info img{
     border-radius: 10%;
+    width: 100px;
 }
 
 .principal-info div{
@@ -49,10 +50,10 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    flex-wrap: wrap;
 }
 
 .caixa button{
-    margin-top: 30px;
     height: 50px;
 }
 </style>

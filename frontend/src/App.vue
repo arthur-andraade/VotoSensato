@@ -8,7 +8,7 @@
       <PesquisaParametros @dadosSelecionados="recebendoParametros"/>
     </div>
     <div v-else>
-      <Resultado/>
+      <Resultado :partido="parametrosPesquisa"/>
     </div>
   </div>
 
@@ -31,10 +31,10 @@ export default {
     }
   },
   methods: {
-    // Recebendo parâmetros para realizar buscar de deputados na A
+    // Recebendo parâmetros para realizar buscar de deputados por Partido
     recebendoParametros: function(parametros){
-      this.parametrosPesquisa.partido = parametros.partido;
-      this.parametrosPesquisa.uf = parametros.uf;
+      this.parametrosPesquisa.id = parametros.partido.id;
+      this.parametrosPesquisa.sigla = parametros.partido.sigla
       this.pesquisar = true;
     },
   },

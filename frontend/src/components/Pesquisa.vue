@@ -5,16 +5,20 @@
       <h2> Como deseja fazer sua pesquisa ? </h2>
         <div class="form-group">
           <label for="partido">Partido</label>
-          <select id = "partido" v-model="partidoSelecionado">
+          <select 
+            id = "partido" 
+            v-model="partidoSelecionado"
+          >
             <option 
               v-for="partido in partidos" 
-              :key="partido" 
+              :key="partido.id" 
               :value="partido"
             >
-              {{ partido }}            
+              {{ partido.sigla }}            
             </option>
           </select>
         </div>
+        <!--
         <div class="form-group">
           <label for="estado">Estado</label>
           <select id = "estado" v-model="ufSelecionado">
@@ -26,7 +30,8 @@
               {{ uf }}
             </option>
           </select>
-        </div>        
+        </div>
+        -->        
         <button @click="dadosSelecionados">Pesquisar</button>
     </div>
     
@@ -36,7 +41,6 @@
         msg="Carregando dados"
       />
     </div>
-
   </div>
 </template>
 
@@ -45,13 +49,6 @@ import ProgressCircle from './ProgressCircle';
 import api from '../service/api'
 
 export default {
-  async mounted() {
-    const parametros = await api.parametrosIniciais();
-    this.partidos = parametros.partidos;
-    this.ufs = parametros.ufs;
-    this.progressBar = null;
-    this.carregando = false;
-  },
   name: 'PesquisaParametros',
   components: {
     ProgressCircle
@@ -59,18 +56,20 @@ export default {
   data() {
     return {
       partidos: [],
-      ufs: [],
       partidoSelecionado: null,
-      ufSelecionado: null,
       carregando: true,
     }
+  },
+  async mounted() {
+    const parametros = await api.parametrosIniciais();
+    this.partidos = parametros.partidos;
+    this.carregando = false;
   },
   methods: {
     dadosSelecionados: function (){
         this.$emit("dadosSelecionados", 
           {
             partido: this.partidoSelecionado,
-            uf: this.ufSelecionado
           }
         );
     }
