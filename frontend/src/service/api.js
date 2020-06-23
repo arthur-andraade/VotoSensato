@@ -14,9 +14,25 @@ const api = {
     dadosPartido: async (idPartido) =>{
         const dados = await acessandoApi.get(`/partido/${idPartido}`).then(
             res => res.data
-        )
+        );
         return dados;
-    }   
+    },
+
+    // Pegando ufs de estados para aplicar filtro
+    recebendoUfs: async () => {
+        const ufs = await acessandoApi.get('ufs').then(
+            res => res.data
+        );
+        return ufs.siglas;
+    },
+
+    dadosFiltrados: async(partido, uf) => {
+        const dadosFiltrado = await acessandoApi.get(`filtro?partido=${partido}&uf=${uf}`).then(
+            res => res.data
+        )
+        return dadosFiltrado.membrosFiltrado
+    }
+    
 }
 
 export default api;

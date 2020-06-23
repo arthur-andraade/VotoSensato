@@ -5,11 +5,13 @@
                 <img :src="image">
                 <div>
                     <h3>Nome: {{ nome }}</h3>
-                    <h3>UF:{{ uf }}</h3>
+                    <h3>UF: {{ uf }}</h3>
+                    <h3>Email: {{ email }}</h3>
                 </div>
             </div>
-            <h3>Email: {{ email }}</h3>
-            <button> Saber mais</button>
+            <div>
+                <button> Saber mais</button>
+            </div>
         </div>
 </template>
 
@@ -23,12 +25,11 @@ export default {
 <style scoped>
 
 .caixa{
-    border: white solid 3px;
+    border: white none 3px;
     margin: 0px 15px;
     width: 400px;
     height: 300px;
     background-color: #537EFF;
-    box-shadow: #5294F7 2px 4px 2px;
     border-radius: 10px;
 }
 .caixa:nth-child(n+3){
@@ -47,13 +48,24 @@ export default {
 
 .principal-info div{
     margin-left: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    flex-wrap: wrap;
+}
+.principal-info div h3{
+    color: white;
+    word-break: break-word;
+    text-align: initial;
 }
 
-.caixa button{
+.caixa div button{
+    margin-top: 15px;
     height: 50px;
+    width: 150px;
+    background-color: #0537CC;
+    color: white;
+    border-style: none;
+    border-radius: 10px;
+}
+
+.caixa div button:hover{
+    background-color: #0645FF;
 }
 </style>

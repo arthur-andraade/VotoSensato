@@ -4,7 +4,7 @@
             id="carregado"
             v-if="!carregar"
         >             
-            <!--Box com informações do Patido em relação há camara -->
+            <!--Box com informações do PARTIDO em relação há camara -->
             <div class="resultado-info">
                 <img :src="dadosPartido.logo">
                 <div>
@@ -12,10 +12,22 @@
                     <h3>Nome: {{ dadosPartido.nome }} </h3>
                     <h3>Numero deputados na camara: {{ dadosPartido.totalMembros}}</h3>
                     <h3>Situação: {{ dadosPartido.situacao }} </h3>
+                    <div class="resultado-filtros">
+                        <h3>Selecione um estado para filtrar deputados:</h3>
+                        <select id="ufs" v-model="ufSelecionado">
+                            <option
+                                v-for="uf in ufs"
+                                :key="uf"
+                                :value="uf"
+                            >
+                                {{ uf }}
+                            </option>
+                        </select>
+                    </div>
                 </div>
 
             </div>
-            <!--Box com informações do Patido em relação há camara -->
+            <!--Box com cada deputado pertencente ao PARTIDO -->
             <div class="resultado-caixas">
                 <ResultadoCaixa
                     v-for="deputado in dadosPartido.membros"
@@ -32,7 +44,7 @@
             v-else
         >
             <ProgressCircle
-                msg="Carregando dados sobre partido..."
+                :msg="msg"
                 :carregando="carregar"
             />
         </div>
@@ -59,31 +71,54 @@ export default {
     },
     data(){
         return {
+            msg: "Carregando dados do partido ...",
             carregar: true,
-            dadosPartido: {}
+            dadosPartido: {},
+            ufs: null,
+            ufSelecionado: null
         }
     },
-
     async mounted() {
+        // Pegando dados referente ao PARTIDO pela API
         const infPartido = await acessandoApi.dadosPartido(this.partido.id);
+        this.ufs = await acessandoApi.recebendoUfs();
         this.dadosPartido = infPartido.dados
         this.carregar = false
+    },
+    watch: {
+        async ufSelecionado(newValue){
+            this.carregar = true;
+            this.msg = "Aplicando filtro para busca de deputado...";
+            const dadosFiltrado = await acessandoApi.dadosFiltrados(
+                this.dadosPartido.sigla,
+                newValue
+            )
+            if(dadosFiltrado != null ){
+                this.carregar = false
+            }
+            this.dadosPartido.membros = dadosFiltrado
+        }
     },
 }
 </script>
 
 <style scoped>
+
+#resultado{
+    margin-bottom: 50px;
+}
 #carregado{
     margin-top: 30px;
     display: flex;
 }
 .resultado-info{
+    color: white;
     border: white solid 3px;
     box-shadow: #5294F7 2px 4px 2px;
     padding: 15px 15px;
     margin-right: 15px;
     width: 350px;
-    height: 280px;
+    height: 350px;
     background-color: #537EFF;
     border-radius: 10px;
 }
@@ -104,4 +139,8 @@ export default {
     align-items: center;
     justify-content: center;
 }
+.resultado-filtros{
+    width: 100%;
+}
+
 </style>

@@ -9,6 +9,7 @@
             id = "partido" 
             v-model="partidoSelecionado"
           >
+            <!--Pegando partidos recebidos da API-->
             <option 
               v-for="partido in partidos" 
               :key="partido.id" 
@@ -18,20 +19,6 @@
             </option>
           </select>
         </div>
-        <!--
-        <div class="form-group">
-          <label for="estado">Estado</label>
-          <select id = "estado" v-model="ufSelecionado">
-            <option 
-              v-for="uf in ufs" 
-              :key="uf" 
-              :value="uf"
-            >
-              {{ uf }}
-            </option>
-          </select>
-        </div>
-        -->        
         <button @click="dadosSelecionados">Pesquisar</button>
     </div>
     
@@ -66,6 +53,7 @@ export default {
     this.carregando = false;
   },
   methods: {
+    // Enviando PARTIDO selecionado
     dadosSelecionados: function (){
         this.$emit("dadosSelecionados", 
           {
