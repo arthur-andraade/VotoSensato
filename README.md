@@ -4,7 +4,7 @@
 <h1 align="center"> Em construção .... :hammer:</h1>
 <br>
 <br>
-<div align="center" bgcolor="black">
+<div align="center">
   <img alt="GitHub stars" src="https://img.shields.io/github/stars/arthur-andraade/VotoSensato?style=social">
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/arthur-andraade/VotoSensato">
 </div>
