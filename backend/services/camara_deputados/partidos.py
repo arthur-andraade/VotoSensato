@@ -31,7 +31,7 @@ class ColetadorPartidos():
     def getPartidos(self):
         return self.partidosFormatados
     
-    def getDadosPartido(self, idPartido):
+    def getDadosPartido(self, idPartido: int):
         url = 'https://dadosabertos.camara.leg.br/api/v2/partidos/{0}'.format(idPartido)
         # Pegando dados sobre o PARTIDO
         dadosPartido = requests.get(url).json()['dados']
@@ -48,11 +48,5 @@ class ColetadorPartidos():
         dadosMembrosPartido = requests.get(url).json()['dados'] 
         dadosPartidoFormatado['membros'] = self.formataDados(dadosMembrosPartido)
         return dadosPartidoFormatado
-    
-    def getDeputadoPorEstado(self, uf, partido):
-        url = "https://dadosabertos.camara.leg.br/api/v2/deputados?siglaPartido={0}&siglaUf={1}".format(partido,uf)
-        dadosFiltrado = requests.get(url).json()['dados']
-        dadosFiltradoFormatado = self.formataDados(dadosFiltrado)
-        return dadosFiltradoFormatado
     
     
