@@ -89,11 +89,13 @@ export default {
 }
 
 .form-group label{
+  margin-top: 20px;
   margin-right: 10px;
   font-size: 22px;
 }
 
 .form-group select{
+  margin-top: 20px;
   width: 120px;
 }
 
@@ -108,7 +110,9 @@ button{
   height: 40px;
   font-size: 20px;
 }
-
+button:hover{
+   background-color: #6495ED;
+}
 .loading{
   background-color: transparent;
 }

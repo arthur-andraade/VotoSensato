@@ -56,7 +56,7 @@ export default {
 }
 
 .caixa div button{
-    margin-top: 15px;
+    margin-top: 25px;
     height: 50px;
     width: 150px;
     background-color: #0537CC;
