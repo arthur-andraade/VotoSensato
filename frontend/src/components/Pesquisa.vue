@@ -36,10 +36,12 @@ import ProgressCircle from './ProgressCircle';
 import api from '../service/api'
 
 export default {
+  
   name: 'PesquisaParametros',
   components: {
     ProgressCircle
   },
+  
   data() {
     return {
       partidos: [],
@@ -47,11 +49,13 @@ export default {
       carregando: true,
     }
   },
+
   async mounted() {
     const parametros = await api.parametrosIniciais();
     this.partidos = parametros.partidos;
     this.carregando = false;
   },
+
   methods: {
     // Enviando PARTIDO selecionado
     dadosSelecionados: function (){
@@ -62,6 +66,7 @@ export default {
         );
     }
   }
+  
 }
 </script>
 

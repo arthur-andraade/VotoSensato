@@ -14,7 +14,9 @@
 
 <script>
 import RadialProgressBar from 'vue-radial-progress'
+
 export default {
+
     name: "ProgressCircle",
     props: {
         carregando: {
@@ -26,9 +28,11 @@ export default {
             required: true
         }
     },
+
     components: {
         RadialProgressBar
     },
+
     data() {
         return {
             carregar: this.carregando,
@@ -39,9 +43,11 @@ export default {
             progress: null
         }
     },
+
     mounted() {
         this.iniciandoProgress();
     },
+    
     methods: {
         iniciandoProgress: function() {
             if(this.carregar){
