@@ -24,6 +24,7 @@
                             </option>
                         </select>
                     </div>
+                    <button @click="voltarInicio"> Voltar </button>
                 </div>
 
             </div>
@@ -59,16 +60,19 @@ import acessandoApi from '../service/api';
 
 export default {
     name: "Resultado",
+    
     props: {
         partido: {
             type: Object,
             required: true,
         },
     },
+
     components: {
         ProgressCircle,
         ResultadoCaixa
     },
+
     data(){
         return {
             msg: "Carregando dados do partido ...",
@@ -78,6 +82,7 @@ export default {
             ufSelecionado: null
         }
     },
+
     async mounted() {
         // Pegando dados referente ao PARTIDO pela API
         const infPartido = await acessandoApi.dadosPartido(this.partido.id);
@@ -85,6 +90,7 @@ export default {
         this.dadosPartido = infPartido.dados
         this.carregar = false
     },
+
     watch: {
         async ufSelecionado(newValue){
             this.carregar = true;
@@ -99,6 +105,14 @@ export default {
             this.dadosPartido.membros = dadosFiltrado
         }
     },
+
+    methods: {
+        // Voltar inicio
+        voltarInicio: function() {
+            this.$emit('voltarInicio');
+        }
+    },
+    
 }
 </script>
 
@@ -118,7 +132,7 @@ export default {
     padding: 15px 15px;
     margin-right: 15px;
     width: 350px;
-    height: 400px;
+    height: 450px;
     background-color: #537EFF;
     border-radius: 10px;
 }
@@ -141,6 +155,22 @@ export default {
 }
 .resultado-filtros{
     width: 100%;
+    margin-bottom: 15px;
 }
 
+button{
+    border-radius: 10px;
+    border: white solid 2px;
+    color: white;
+    background-color: #0537CC;
+    margin-top: 30px;
+    width: 150px;
+    text-align: center;
+    height: 40px;
+    font-size: 20px;
+}
+
+button:hover{
+    background-color: #6495ED;
+}
 </style>

@@ -8,7 +8,10 @@
       <PesquisaParametros @dadosSelecionados="recebendoParametros"/>
     </div>
     <div v-else>
-      <Resultado :partido="parametrosPesquisa"/>
+      <Resultado 
+        :partido="parametrosPesquisa"
+        @voltarInicio="redirecionarPesquisaInicial"
+      />
     </div>
   </div>
 
@@ -19,17 +22,21 @@ import PesquisaParametros from './components/Pesquisa.vue';
 import Resultado from './components/Resultado';
 
 export default {
+  
   name: 'App',
+
   components: {
     PesquisaParametros,
     Resultado,
   },
+
   data() {
     return {
       pesquisar: false,
       parametrosPesquisa: {}
     }
   },
+
   methods: {
     // Recebendo parâmetros para realizar buscar de deputados por Partido
     recebendoParametros: function(parametros){
@@ -37,6 +44,10 @@ export default {
       this.parametrosPesquisa.sigla = parametros.partido.sigla
       this.pesquisar = true;
     },
+    
+    redirecionarPesquisaInicial: function(){
+      this.pesquisar = !this.pesquisar
+    }
   },
 
 }
