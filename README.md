@@ -3,11 +3,6 @@
 <br>
 <h3>Introdução :clipboard:</h3>
   <p> O site oferece um sistema de busca de deputados ativos na câmara dos deputados pelo seu partido e estado, além de mostar um resumo do partido dentro da camarâ, como o número de deputados que possui lá dentro e sua situação. A mini-api desenvolvida consome dois serviços externos e formata os dados enviados por estes  para ser utilizado corretamente pelo site.</p>
-<div>
-  <img src="https://user-images.githubusercontent.com/37722587/86157685-26855600-bade-11ea-8abd-8cc5f0bbf880.png" width="330" height="200" >
-  <img src="https://user-images.githubusercontent.com/37722587/86157773-3f8e0700-bade-11ea-8919-c95f1bf1977b.png" width="330" height="200">
-  <img src="https://user-images.githubusercontent.com/37722587/86157840-516faa00-bade-11ea-90c6-1c14cafb4c67.png" width="330" height="200">
-</div>
  <br>
  <h3>Techs utilizadas :rocket:</h3>
   <ul>
