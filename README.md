@@ -29,7 +29,7 @@
    </li>  
   </ul>
  <br>
-<h3>Rodando aplicação</h3>
+<h3>Rodando aplicação :minidisc:</h3>
 Primeiramente clone o projeto :
 
 ```
