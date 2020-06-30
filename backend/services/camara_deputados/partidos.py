@@ -1,5 +1,5 @@
 import requests
-
+from .utils.aux import formataMembro as formatador
 class ColetadorPartidos():
     
     def __init__(self):
@@ -7,26 +7,11 @@ class ColetadorPartidos():
         self.partidosFormatados = []
         
         for partido in self.partidos['dados']:
-            dictPartido = {
-                'id': 0, 
-                'sigla': ' '
-            }
+            dictPartido = {}
             dictPartido['id'] = partido['id']
             dictPartido['sigla'] = partido['sigla']
             
             self.partidosFormatados.append(dictPartido)
-
-    def formataDados(self, dados):
-        dadosFormatados = []
-        for membro in dados:
-            dadosMembro = {}
-            dadosMembro['id'] = membro['id']
-            dadosMembro['nome'] = membro['nome']
-            dadosMembro['uf'] = membro['siglaUf']
-            dadosMembro['image'] = membro['urlFoto']
-            dadosMembro['email'] = membro['email']
-            dadosFormatados.append(dadosMembro)
-        return dadosFormatados
     
     def getPartidos(self):
         return self.partidosFormatados
@@ -46,7 +31,7 @@ class ColetadorPartidos():
         # Pegando dados sobre MEMBROS do PARTIDO
         url += '/membros?itens=100'
         dadosMembrosPartido = requests.get(url).json()['dados'] 
-        dadosPartidoFormatado['membros'] = self.formataDados(dadosMembrosPartido)
+        dadosPartidoFormatado['membros'] = formatador(dadosMembrosPartido)
         return dadosPartidoFormatado
     
     

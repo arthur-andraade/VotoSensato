@@ -1,3 +1,4 @@
 __pycache__
 services/ibge/__pycache__
 services/camara_deputados/__pycache__
+services/camara_deputados/utils/__pycache__
