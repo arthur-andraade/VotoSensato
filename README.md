@@ -73,7 +73,7 @@ para rodar a mini-api :
 ```
 Agora a mini-api estará rodando em determinada porta de sua máquina e estará disponível para receber os **requests** e enviar dados para o front-end.
 <br>
-<h4><strong>Front-end</strong><h4>
+<h4><strong>Front-end</strong></h4>
 <p> Para rodar parte do front-end é necessário ter instalado em sua máquina o NPM para instalar o vue-cli com seguinte comando : </p>
 
 ```
